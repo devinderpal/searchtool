@@ -22,8 +22,8 @@ repositories {
 
 dependencies {
     // This dependency is used by the application.
-    implementation 'com.google.guava:guava:29.0-jre'
-    implementation 'org.slf4j:slf4j-api:1.7.36'
+    compile 'com.google.guava:guava:29.0-jre'
+    compile 'org.slf4j:slf4j-api:1.7.36'
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.13'
@@ -32,4 +32,15 @@ dependencies {
 application {
     // Define the main class for the application.
     mainClassName = 'searchtool.App'
+}
+
+jar {
+    manifest {
+        attributes(
+                "Main-Class": 'searchtool.App'
+        )
+    }
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }

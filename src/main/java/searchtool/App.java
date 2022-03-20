@@ -16,6 +16,9 @@ public class App {
             while (!"exit".equalsIgnoreCase(searchBy)) {
                 System.out.println("Please enter your search criteria, Accepted Zip code, State, City, Type, Bank Name or City & State:");
                 searchBy = scanner.nextLine();
+                if (searchBy == null || searchBy.trim().equalsIgnoreCase("")){
+                    continue;
+                }
                 System.out.printf("User input: %s%n", searchBy);
                 List<Branch> matchingBranches = branchSearcher.searchBranch(searchBy);
                 matchingBranches.forEach(System.out::println);
